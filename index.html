@@ -3,335 +3,192 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>反對問題話術手冊</title>
+<title>業務話術手冊</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    min-height: 100vh;
-    background: #F7F6F3;
-    color: #1A1A1A;
-    font-family: 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif;
-  }
-
-  /* Header */
-  .header {
-    background: #FFFFFF;
-    border-bottom: 1px solid #E8E4DF;
-    padding: 32px 24px 24px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
-  .header-inner { max-width: 680px; margin: 0 auto; }
-  .header-sub {
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: #AAAAAA;
-    margin-bottom: 6px;
-    text-transform: uppercase;
-    font-weight: 500;
-  }
-  .header h1 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #111;
-    letter-spacing: -0.5px;
-    margin-bottom: 20px;
-  }
-
-  /* Filter */
-  .filters { display: flex; gap: 8px; flex-wrap: wrap; }
-  .filter-btn {
-    padding: 5px 14px;
-    border-radius: 4px;
-    border: 1.5px solid #DDDDDD;
-    background: #FFFFFF;
-    color: #999;
-    font-size: 11px;
-    cursor: pointer;
-    font-weight: 600;
-    letter-spacing: 1px;
-    transition: all 0.15s;
-    font-family: inherit;
-  }
-  .filter-btn.active-all {
-    border-color: #111;
-    background: #111;
-    color: #FFF;
-  }
-
-  /* Cards */
-  .cards { max-width: 680px; margin: 0 auto; padding: 28px 16px 60px; }
-  .card {
-    background: #FFFFFF;
-    border: 1px solid #E8E4DF;
-    border-radius: 6px;
-    margin-bottom: 10px;
-    overflow: hidden;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    transition: all 0.2s;
-  }
-  .card.open { box-shadow: 0 2px 16px rgba(0,0,0,0.08); }
-
-  /* Card Header */
-  .card-header {
-    padding: 16px 20px;
-    display: flex;
-    align-items: center;
-    gap: 14px;
-    cursor: pointer;
-    user-select: none;
-  }
-  .badge {
-    width: 28px;
-    height: 28px;
-    border-radius: 4px;
-    background: #F2F0ED;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: #AAAAAA;
-    flex-shrink: 0;
-    transition: all 0.2s;
-  }
-  .card.open .badge { color: #FFFFFF; }
-  .card-meta { flex: 1; }
-  .card-tag {
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    font-weight: 600;
-    text-transform: uppercase;
-    margin-bottom: 3px;
-  }
-  .card-title {
-    font-size: 14px;
-    font-weight: 700;
-    color: #111;
-    letter-spacing: -0.2px;
-  }
-  .chevron {
-    color: #CCC;
-    font-size: 16px;
-    transition: transform 0.2s;
-    line-height: 1;
-  }
+  body { min-height: 100vh; background: #F7F6F3; color: #1A1A1A; font-family: 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif; font-size: 16px; }
+  .header { background: #FFFFFF; border-bottom: 1px solid #E8E4DF; padding: 28px 24px 20px; position: sticky; top: 0; z-index: 100; }
+  .header-inner { max-width: 720px; margin: 0 auto; }
+  .header-sub { font-size: 12px; letter-spacing: 4px; color: #AAAAAA; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
+  .header h1 { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .tabs { display: flex; gap: 6px; }
+  .tab-btn { padding: 8px 20px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 14px; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
+  .tab-btn.active { border-color: #111; background: #111; color: #FFF; }
+  .content { max-width: 720px; margin: 0 auto; padding: 28px 16px 80px; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .section-header { font-size: 11px; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 20px; }
+  .card { background: #FFFFFF; border: 1px solid #E8E4DF; border-radius: 8px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s; }
+  .card.open { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+  .stage-header { padding: 18px 22px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
+  .stage-num { width: 38px; height: 38px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
+  .card.open .stage-num { color: #FFFFFF; }
+  .stage-info { flex: 1; }
+  .stage-label { font-size: 11px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
+  .stage-title { font-size: 17px; font-weight: 700; color: #111; }
+  .stage-goal { font-size: 13px; color: #AAAAAA; margin-top: 2px; }
+  .obj-header { padding: 16px 22px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
+  .obj-badge { width: 34px; height: 34px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
+  .card.open .obj-badge { color: #FFFFFF; }
+  .obj-meta { flex: 1; }
+  .obj-tag { font-size: 11px; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
+  .obj-title { font-size: 17px; font-weight: 700; color: #111; }
+  .chevron { color: #CCC; font-size: 18px; transition: transform 0.2s; }
   .card.open .chevron { transform: rotate(180deg); }
-
-  /* Card Body */
-  .card-body { display: none; padding: 0 20px 20px; }
+  .card-body { display: none; padding: 0 22px 22px; }
   .card.open .card-body { display: block; }
-  .divider { height: 1px; background: #F0EDE8; margin-bottom: 16px; }
-
-  .block {
-    background: #FAFAF9;
-    border: 1px solid #EEEBE6;
-    border-radius: 4px;
-    padding: 12px 14px;
-    margin-bottom: 12px;
-  }
-  .block-label {
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    color: #BBBBBB;
-    margin-bottom: 6px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  .block-text {
-    font-size: 13px;
-    color: #888;
-    line-height: 1.75;
-  }
-  .block.script .block-text {
-    font-size: 13.5px;
-    color: #222;
-    line-height: 1.85;
-  }
-
-  /* Logic */
-  .logic-label {
-    font-size: 9px;
-    letter-spacing: 2.5px;
-    color: #BBBBBB;
-    margin-bottom: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  .logic-item {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 8px;
-    align-items: flex-start;
-  }
-  .logic-num {
-    width: 16px;
-    height: 16px;
-    border-radius: 2px;
-    color: #FFF;
-    font-size: 9px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    margin-top: 2px;
-  }
-  .logic-text {
-    font-size: 12.5px;
-    color: #666;
-    line-height: 1.65;
-  }
+  .divider { height: 1px; background: #F0EDE8; margin-bottom: 18px; }
+  .inner-sec { margin-bottom: 18px; }
+  .sec-label { font-size: 11px; letter-spacing: 3px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+  .purpose-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 15px; color: #444; line-height: 1.75; }
+  .script-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 15px; color: #222; line-height: 1.85; margin-bottom: 8px; border-left-width: 3px; border-left-style: solid; }
+  .tip-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
+  .tip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
+  .tip-text { font-size: 15px; color: #555; line-height: 1.65; }
+  .branch { border: 1px solid #EEEBE6; border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
+  .branch-header { padding: 10px 14px; font-size: 13px; font-weight: 700; background: #F7F6F3; color: #666; border-bottom: 1px solid #EEEBE6; }
+  .branch-body { padding: 12px 14px; font-size: 15px; color: #333; line-height: 1.75; }
+  .obj-block { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 13px 15px; margin-bottom: 10px; }
+  .obj-block-label { font-size: 11px; letter-spacing: 2.5px; color: #BBBBBB; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+  .obj-block-text { font-size: 15px; color: #888; line-height: 1.75; }
+  .obj-block.script .obj-block-text { font-size: 16px; color: #222; line-height: 1.85; }
+  .logic-item { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
+  .logic-num { width: 20px; height: 20px; border-radius: 3px; color: #FFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .logic-text { font-size: 15px; color: #555; line-height: 1.65; }
+  .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
+  .filter-btn { padding: 6px 14px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 13px; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
+  .filter-btn.fall { border-color: #111; background: #111; color: #FFF; }
+  .subsection-divider { height: 1px; background: #E8E4DF; margin: 28px 0 24px; }
+  .subsection-title { font-size: 11px; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
 </style>
 </head>
 <body>
-
 <div class="header">
   <div class="header-inner">
-    <div class="header-sub">UberEats 代操業務</div>
-    <h1>反對問題話術手冊</h1>
-    <div class="filters">
-      <button class="filter-btn active-all" onclick="filterCards(null, this)">全部</button>
-      <button class="filter-btn" style="--c:#C0392B" onclick="filterCards('成本類', this)">成本類</button>
-      <button class="filter-btn" style="--c:#7B61FF" onclick="filterCards('過去經驗類', this)">過去經驗類</button>
-      <button class="filter-btn" style="--c:#1A7A4A" onclick="filterCards('現況滿足類', this)">現況滿足類</button>
-      <button class="filter-btn" style="--c:#1565C0" onclick="filterCards('執行能力類', this)">執行能力類</button>
+    <div class="header-sub">UberEats 代操</div>
+    <h1>業務話術手冊</h1>
+    <div class="tabs">
+      <button class="tab-btn active" id="tab-btn-assistant" onclick="switchTab('assistant')">🙋 助理版</button>
+      <button class="tab-btn" id="tab-btn-sales" onclick="switchTab('sales')">💼 業務版</button>
     </div>
   </div>
 </div>
+<div class="content">
 
-<div class="cards" id="cards"></div>
+  <!-- 助理版 -->
+  <div class="tab-content active" id="tab-assistant">
+    <div class="role-badge" style="background:#EEF4FF;color:#1565C0;">🙋 助理 — 目標：約到線上諮詢時間</div>
+    <div class="subsection-title">電話流程</div>
+    <div id="assistant-cards"></div>
+    <div class="subsection-divider"></div>
+    <div class="subsection-title">常見狀況處理</div>
+    <div id="assistant-situation-cards"></div>
+  </div>
 
+  <!-- 業務版 -->
+  <div class="tab-content" id="tab-sales">
+    <div class="role-badge" style="background:#FFF4EE;color:#C0392B;">💼 業務 — 目標：從開發到成交</div>
+    <div class="subsection-title">電話拜訪框架</div>
+    <div id="sales-framework-cards"></div>
+    <div class="subsection-divider"></div>
+    <div class="subsection-title">反對問題話術</div>
+    <div class="filter-row" id="obj-filters"></div>
+    <div id="objection-cards"></div>
+  </div>
+
+</div>
 <script>
-const data = [
-  {
-    id: 1, tag: "成本類", color: "#C0392B",
-    title: "抽成太高",
-    objection: "「你們抽成太高了啦。」",
-    script: "老闆，這個35%是UberEats本來就收的，跟我們合作不會多抽你。你付的月費是請我們幫你顧店、衝業績，抽成這塊完全不變。",
-    logic: ["35%是平台收的，不是我們收的", "月費＝專人代操的服務費，分開看", "成本沒有增加，多的是有人幫你經營"],
-  },
-  {
-    id: 2, tag: "過去經驗類", color: "#7B61FF",
-    title: "之前做過，沒效",
-    objection: "「我之前有用過，沒什麼效果，後來就停掉了。」",
-    script: "老闆，你之前沒效，應該是當時沒有人幫你好好規劃菜單跟上架方式。外送平台上，菜單怎麼排、照片怎麼拍、品項怎麼設定，都會直接影響到單量。這塊我們會幫你顧到，跟你之前自己摸索是不一樣的。",
-    logic: ["不否定店家的經驗，先認同「之前確實沒效」", "把原因導向執行方式，不是外送平台本身沒用", "凸顯你們的價值：專業規劃，不是讓他自己亂試"],
-  },
-  {
-    id: 3, tag: "現況滿足類", color: "#1A7A4A",
-    title: "我現在單量就夠了",
-    objection: "「我現在生意還不錯，單量夠了，不需要再開外送。」",
-    script: "老闆，你店開著就是要做生意嘛。我問你，如果今天門口排了十個人在等，你會不做嗎？外送單就是那十個人，只是他們在手機上等你，不在門口而已。",
-    logic: ["用「排隊」的畫面感讓店家直覺理解", "「單量夠了」不等於「不能更好」", "外送是額外的客源，不是取代現場"],
-  },
-  {
-    id: 4, tag: "執行能力類", color: "#1565C0",
-    title: "我沒時間弄外送",
-    objection: "「外送的東西很多要弄，我哪有時間處理。」",
-    script: "老闆，這個正是我們在做的事。平台上架、菜單規劃、照片、活動設定這些雜事全部我們來處理，你只要專心出餐就好，其他的不用管。",
-    logic: ["直接解決「沒時間」這個顧慮", "明確說清楚你們負責什麼、店家只需要做什麼", "降低店家的心理門檻"],
-  },
-  {
-    id: 5, tag: "執行能力類", color: "#1565C0",
-    title: "人手不足、怕單太多",
-    objection: "「我人手不夠，怕單太多做不出來，還要多請人，成本增加。」",
-    script: "老闆，開店就是要賺錢嘛。如果真的忙到需要多請人，代表你生意好到需要擴張，這是好事不是壞事，對不對？而且我們可以先從冷門時段開始開，廚房本來就閒著，先用這段時間跑外送單，完全不影響你現場，等你上手了、有信心了，再慢慢擴大。",
-    logic: ["先破解「怕忙」的心態——忙是好事", "再給具體方案降低風險——冷門時段先試", "讓店家覺得可控，不是一下子全開"],
-  },
-  {
-    id: 6, tag: "執行能力類", color: "#1565C0",
-    title: "怕影響現場品質",
-    objection: "「外送單太多，我怕現場的品質會跟著變差。」",
-    script: "老闆，你想想，今天有客人來店裡要外帶，他也是帶回家吃，跟外送單本質一樣。如果今天二十個人要外帶，你會叫他們不用等、不接這生意嗎？外送單就是那二十個人，只是他們用手機點而已。",
-    logic: ["外送單跟外帶本質相同，店家其實早就在做", "用店家自己的行為來反問，讓他自己想通", "「影響品質」的擔心站不住腳"],
-  },
-  {
-    id: 7, tag: "現況滿足類", color: "#1A7A4A",
-    title: "重心在現場，外送加減做",
-    objection: "「外送我有在做啦，但主要還是以現場為主，有單就做。」",
-    script: "老闆，你現在是加減做沒關係，但你有沒有想過，如果外送單做起來，量比現場還多，你等於是不用付房租，開了一間分店。現場受限於座位、地點、時間，但外送的範圍可以一直擴，這個天花板是不一樣的。",
-    logic: ["不否定「重心在現場」，但拉高店家的想像空間", "外送沒有租金、沒有座位限制，本質是低成本擴張", "從「加減做」變成策略性的第二條收入線"],
-  },
-  {
-    id: 8, tag: "成本類", color: "#C0392B",
-    title: "打廣告才有單，沒做沒單",
-    objection: "「我之前試過，要一直打廣告才有單，沒打就沒單，根本賺不到錢。」",
-    script: "老闆，廣告本來就是要做的，這個沒錯。但差別是，有沒有人幫你優化。光跑廣告沒有優化，錢就一直燒、效果不穩定。我們做的就是幫你把菜單、評價、店頁都調好，讓廣告的每一塊錢發揮最大效果，慢慢累積自然流量，之後就算少下廣告，單量也不會掉。",
-    logic: ["認同「廣告要做」，不否定店家的經驗", "點出問題在「沒有優化配合」，錢才燒不出效果", "目標是讓廣告費越來越少、效果越來越好"],
-  },
+var assistantStages=[
+  {num:1,color:"#1565C0",label:"開場",title:"接觸老闆",goal:"目的：確認老闆本人接電話",purpose:"只需要讓老闆開口，不要在這個階段解釋太多。員工不是決策者，說再多也沒用。",scripts:["您好，我們是 UberEats 的合作夥伴，請問老闆方便接電話嗎？"],tips:["員工問「什麼事」→ 說「關於 UberEats 後台的事，需要跟老闆確認一下」","不要跟員工解釋服務內容"],branches:[]},
+  {num:2,color:"#7B61FF",label:"暖身",title:"讓老闆願意說話",goal:"目的：讓老闆放鬆，開始開口",purpose:"老闆預設對陌生來電是警戒的。先問簡單的問題，讓他開口，他就會比較放鬆。",scripts:["老闆您好，我姓＿＿，我們是 UberEats 的合作夥伴，會定期關心有在使用 UberEats 的店家。請問老闆貴姓？","（老闆回答後）請問 UberEats 後台現在都是老闆自己在處理，還是有員工幫忙？","使用多久了？"],tips:["叫出老闆的姓，拉近距離","這些問題老闆很容易回答，讓他先開口"],branches:[]},
+  {num:3,color:"#1A7A4A",label:"了解狀況",title:"問出老闆現在的經營狀況",goal:"目的：收集資訊，找到切入點",purpose:"讓老闆說出他的狀況，你才知道怎麼接。不要急著介紹服務。",scripts:["使用這段期間，您覺得 UberEats 帶來的訂單量有符合您的預期嗎？","（還不錯）是因為老闆自己有在操作後台嗎？","（不好）主要是哪方面？單量還是廣告效果？"],tips:["老闆說還不錯 → 追問是不是自己在顧後台，帶出「有我們幫你可以更輕鬆」","老闆說不好 → 讓他說出原因，記下來給業務"],branches:[]},
+  {num:4,color:"#D97706",label:"約訪",title:"約到線上諮詢時間",goal:"目的：拿到一個具體的時間",purpose:"給選項，不要問「方便嗎」，太容易被拒絕。說明只需要 15 分鐘，降低老闆的心理負擔。",scripts:["老闆，我想幫您安排一個大概 15 分鐘的線上諮詢，由我們顧問分享其他店家怎麼做的，讓老闆參考。","老闆通常下午比較有空，還是晚上呢？","（老闆說下午）好，那明天下午 2 點還是 4 點比較方便？"],tips:["說「15 分鐘」讓老闆覺得負擔小","兩段式縮小選擇：先問下午或晚上，再問具體時間","老闆猶豫時：「就算不合作也沒關係，先聽聽看對你有沒有幫助」"],branches:[]},
+  {num:5,color:"#555555",label:"收尾",title:"確認資訊，加 LINE",goal:"目的：留下聯絡方式，確認約好的時間",purpose:"確認好時間後，加 LINE 傳貼圖，確保號碼沒有記錯，也讓老闆記得你。",scripts:["好的，那我跟老闆留一下聯絡方式，請問手機號碼可以加您的 LINE 嗎？","（加上後）我傳個貼圖給您，我的名字是＿＿，有看到嗎？","好的，那＿＿點我會傳會議連結給您，期待跟您聊聊！"],tips:["加 LINE 比直接要電話更容易讓老闆接受","傳貼圖確認有加到，避免號碼記錯","把老闆資訊記下來交給業務"],branches:[]}
 ];
 
-let currentFilter = null;
-let openId = null;
+var assistantSituations=[
+  {num:"A",color:"#C0392B",label:"常見狀況",title:"老闆說不需要",
+   objection:"「我不需要，謝謝。」",
+   script:"是因為現在用外送平台有遇到什麼問題嗎？",
+   logic:["不要直接推銷，先了解他說不需要的原因","讓老闆說出狀況，才能找到切入點","如果他真的沒問題，可以說「了解，那我之後再跟老闆保持聯繫」"]},
+  {num:"B",color:"#D97706",label:"常見狀況",title:"老闆說沒空",
+   objection:"「我現在很忙，沒空。」",
+   script:"所以現在是您忙碌的時候嗎，還是在休息呢？",
+   logic:["忙碌 → 「了解，那什麼時候比較方便？我到時候再打給您。」","休息 → 「那我們現在聊 5 分鐘可以嗎？」","不要直接放棄，先確認他現在的狀態再決定怎麼接"]}
+];
 
-function renderCards() {
-  const container = document.getElementById('cards');
-  const filtered = currentFilter ? data.filter(d => d.tag === currentFilter) : data;
-  container.innerHTML = filtered.map(item => `
-    <div class="card ${openId === item.id ? 'open' : ''}" id="card-${item.id}" onclick="toggleCard(${item.id})">
-      <div class="card-header">
-        <div class="badge" style="${openId === item.id ? 'background:' + item.color : ''}">${item.id}</div>
-        <div class="card-meta">
-          <div class="card-tag" style="color:${item.color}">${item.tag}</div>
-          <div class="card-title">${item.title}</div>
-        </div>
-        <div class="chevron">▾</div>
-      </div>
-      <div class="card-body">
-        <div class="divider"></div>
-        <div class="block">
-          <div class="block-label">店家說</div>
-          <div class="block-text">${item.objection}</div>
-        </div>
-        <div class="block script" style="border-left: 3px solid ${item.color}">
-          <div class="block-label" style="color:${item.color}">你這樣說</div>
-          <div class="block-text">${item.script}</div>
-        </div>
-        <div class="logic-label">核心邏輯</div>
-        ${item.logic.map((p, i) => `
-          <div class="logic-item">
-            <div class="logic-num" style="background:${item.color}">${i+1}</div>
-            <div class="logic-text">${p}</div>
-          </div>
-        `).join('')}
-      </div>
-    </div>
-  `).join('');
+var salesStages=[
+  {num:1,color:"#1565C0",label:"開場",title:"通過守門員，找到老闆",goal:"目的：讓員工把電話轉給老闆",purpose:"員工不是決策者，任何說明在這個階段都是浪費。唯一目標就是讓老闆接電話，不要跟員工解釋太多。",scripts:["您好，我們是 UberEats 的合作夥伴，請問老闆方便接電話嗎？"],tips:["說「合作夥伴」而不是「顧問公司」，員工比較不會擋","員工問「什麼事？」→ 只說「關於 UberEats 後台的事，需要跟老闆確認」","不要在這個階段解釋服務內容"],branches:[]},
+  {num:2,color:"#7B61FF",label:"暖身",title:"建立信任，讓老闆願意說話",goal:"目的：讓老闆放鬆，開始開口",purpose:"老闆接到陌生電話預設是警戒的。這個階段不要急著介紹服務，先讓他感覺你是來了解他的，不是來推銷的。",scripts:["老闆您好，我姓陳，我們是 UberEats 的合作夥伴，會定期關心有在使用 UberEats 的店家。請問老闆貴姓？","（老闆回答後）＿＿老闆，請問 UberEats 後台現在都是您自己在處理，還是有員工幫忙？","（老闆回答後）使用多久了？"],tips:["先問姓，叫出老闆的名字，拉近距離","問「誰在操作後台」是在確認他是不是真正的決策者","這兩個問題老闆很好回答，說話後他會比較放鬆"],branches:[]},
+  {num:3,color:"#1A7A4A",label:"診斷",title:"找出老闆的痛點",goal:"目的：讓老闆自己說出他不滿意的地方",purpose:"不要告訴老闆他有問題，要讓他自己說出來。人對自己說出口的問題才會有感，你說的只是推銷。",scripts:["使用這段期間，您覺得 UberEats 帶來的訂單量有符合您的預期嗎？","（如果說還好）是因為老闆自己有在操作後台嗎？","（如果說不好）主要是哪方面？單量？還是廣告花了錢沒效果？","有自己設定過活動或廣告嗎？"],tips:["問開放式問題，讓老闆多說","聽到他的抱怨不要急著解釋，先說「了解」讓他說完","一天單量是重要指標：10 單以下通常代表有優化空間"],branches:[{label:"😊 老闆說還不錯",body:"追問：「是因為老闆自己有在操作後台嗎？」— 如果是，就接：「那代表老闆很用心在經營，如果有我們幫你一起顧，可以讓你省下這些時間，單量還可以再往上衝。」"},{label:"😞 老闆說不太好",body:"先問原因，讓他說出痛點，這就是你等一下要解決的點"},{label:"🤷 老闆說不清楚",body:"換角度問：「那您有沒有覺得哪個時段單量特別少？」引導他思考"}]},
+  {num:4,color:"#C0392B",label:"定位",title:"說明我們是誰、能幫什麼",goal:"目的：讓老闆理解你們的價值，產生好奇",purpose:"這段要短、要精準，針對他剛才說的痛點來說，不要背稿式地把所有服務都說一遍。老闆只在乎跟他有關的部分。",scripts:["是這樣的，UberEats 只是提供平台，但不會告訴你怎麼經營。我們是外送平台顧問，專門幫有在用 UberEats 的店家，在高抽成的環境下還是做出穩定的利潤。","（單量少）我們有幫其他店家從一天 3 單做到 20 單以上，主要是菜單結構跟活動設定的問題。","（廣告沒效）廣告沒效通常不是預算問題，是優化的問題，我們可以幫你看。"],tips:["說明要針對他的痛點，不要說所有服務","用「其他店家」當例子，比說自己厲害有說服力","這段不要太長，說完馬上進入約時間"],branches:[]},
+  {num:5,color:"#D97706",label:"成交",title:"推進成交",goal:"目的：電話中判斷狀況，選最快的方式成交",purpose:"老闆主動問收費是最好的訊號，代表他有興趣。這時候不要再介紹服務，直接推進成交。根據老闆的感覺判斷用哪種方式。",scripts:["（老闆問收費）我先跟老闆說一下我們的方案。（說完方案後）老闆，我們今天線上簽約也可以，或是我方便到現場跟你聊，老闆比較喜歡哪種方式？","（感覺好，直接推）老闆聽起來很清楚自己要什麼，我們今天線上就可以把合約簽一簽，這樣最快。","（感覺需要見面）老闆，這樣不如我約個時間到店裡跟你聊，面對面比較清楚，老闆下午還是晚上比較方便？"],tips:["老闆主動問收費 → 立刻推進，不要再繼續介紹","給兩個選項：線上簽約 或 約見面，不要只說「你考慮看看」","電話感覺好 → 直接線上成交；感覺猶豫 → 約見面現場成交"],branches:[{label:"💰 老闆問收費",body:"直接說方案，說完後問：「老闆，我們今天線上簽約也可以，或是我到現場跟你談，哪種方式比較方便？」"},{label:"😊 老闆感覺有興趣",body:"直接推線上成交：「老闆，那我們今天就把合約確認一下，這樣最快，你也可以早點開始跑單。」"},{label:"🤔 老闆還在猶豫",body:"約見面：「老闆，不然我約個時間到店裡跟你聊，面對面比較清楚，下午還是晚上方便？」"},{label:"❌ 老闆說要想想",body:"「老闆，你主要是對哪個部分還有疑問？我現在可以直接跟你說清楚。」— 先找出卡關的點，不要直接放棄"}]},
+  {num:6,color:"#555555",label:"收尾",title:"成交後，建立合作關係",goal:"目的：加 LINE、打預防針、讓老闆安心",purpose:"成交後不是掛電話走人，要讓老闆知道接下來的合作模式，減少他後續可能產生的抗拒。",scripts:["好的，那我跟老闆加一下 LINE，方便我們後續聯繫。請問手機號碼可以加您的 LINE 嗎？","（加上後）我傳個貼圖給您，我的名字是＿＿，有看到嗎？","老闆，因為我們在合作初期會需要跟老闆確認一些菜單跟設定的細節，所以這段時間可能會常常致電給您，麻煩老闆方便的話接聽一下，這樣事情才不會卡住。","等我們順利上線之後，就會盡量減少打擾老闆，但老闆有任何問題，隨時打給我們，我們一定接。"],tips:["加 LINE 傳貼圖確認有加到","告知初期會常聯絡，讓老闆有心理準備，不會覺得被騷擾","強調上線後會減少打擾，給老闆安心感","最後說「老闆有問題我們一定接」，讓他覺得你們是可靠的夥伴"],branches:[]}
+];
+
+var objections=[
+  {id:1,tag:"成本類",color:"#C0392B",title:"抽成太高",objection:"「你們抽成太高了啦。」",script:"老闆，這個35%是UberEats本來就收的，跟我們合作不會多抽你。你付的月費是請我們幫你顧店、衝業績，抽成這塊完全不變。",logic:["35%是平台收的，不是我們收的","月費＝專人代操的服務費，分開看","成本沒有增加，多的是有人幫你經營"]},
+  {id:2,tag:"過去經驗類",color:"#7B61FF",title:"之前做過，沒效",objection:"「我之前有用過，沒什麼效果，後來就停掉了。」",script:"老闆，你之前沒效，應該是當時沒有人幫你好好規劃菜單跟上架方式。外送平台上，菜單怎麼排、照片怎麼拍、品項怎麼設定，都會直接影響到單量。這塊我們會幫你顧到，跟你之前自己摸索是不一樣的。",logic:["不否定店家的經驗，先認同「之前確實沒效」","把原因導向執行方式，不是外送平台本身沒用","凸顯你們的價值：專業規劃，不是讓他自己亂試"]},
+  {id:3,tag:"現況滿足類",color:"#1A7A4A",title:"我現在單量就夠了",objection:"「我現在生意還不錯，單量夠了，不需要再開外送。」",script:"老闆，你店開著就是要做生意嘛。我問你，如果今天門口排了十個人在等，你會不做嗎？外送單就是那十個人，只是他們在手機上等你，不在門口而已。",logic:["用「排隊」的畫面感讓店家直覺理解","「單量夠了」不等於「不能更好」","外送是額外的客源，不是取代現場"]},
+  {id:4,tag:"執行能力類",color:"#1565C0",title:"我沒時間弄外送",objection:"「外送的東西很多要弄，我哪有時間處理。」",script:"老闆，這個正是我們在做的事。平台上架、菜單規劃、照片、活動設定這些雜事全部我們來處理，你只要專心出餐就好，其他的不用管。",logic:["直接解決「沒時間」這個顧慮","明確說清楚你們負責什麼、店家只需要做什麼","降低店家的心理門檻"]},
+  {id:5,tag:"執行能力類",color:"#1565C0",title:"人手不足、怕單太多",objection:"「我人手不夠，怕單太多做不出來，還要多請人，成本增加。」",script:"老闆，開店就是要賺錢嘛。如果真的忙到需要多請人，代表你生意好到需要擴張，這是好事不是壞事，對不對？而且我們可以先從冷門時段開始開，廚房本來就閒著，先用這段時間跑外送單，完全不影響你現場，等你上手了、有信心了，再慢慢擴大。",logic:["先破解「怕忙」的心態——忙是好事","再給具體方案降低風險——冷門時段先試","讓店家覺得可控，不是一下子全開"]},
+  {id:6,tag:"執行能力類",color:"#1565C0",title:"怕影響現場品質",objection:"「外送單太多，我怕現場的品質會跟著變差。」",script:"老闆，你想想，今天有客人來店裡要外帶，他也是帶回家吃，跟外送單本質一樣。如果今天二十個人要外帶，你會叫他們不用等、不接這生意嗎？外送單就是那二十個人，只是他們用手機點而已。",logic:["外送單跟外帶本質相同，店家其實早就在做","用店家自己的行為來反問，讓他自己想通","「影響品質」的擔心站不住腳"]},
+  {id:7,tag:"現況滿足類",color:"#1A7A4A",title:"重心在現場，外送加減做",objection:"「外送我有在做啦，但主要還是以現場為主，有單就做。」",script:"老闆，你現在是加減做沒關係，但你有沒有想過，如果外送單做起來，量比現場還多，你等於是不用付房租，開了一間分店。現場受限於座位、地點、時間，但外送的範圍可以一直擴，這個天花板是不一樣的。",logic:["不否定「重心在現場」，但拉高店家的想像空間","外送沒有租金、沒有座位限制，本質是低成本擴張","從「加減做」變成策略性的第二條收入線"]},
+  {id:8,tag:"成本類",color:"#C0392B",title:"打廣告才有單，沒做沒單",objection:"「我之前試過，要一直打廣告才有單，沒打就沒單，根本賺不到錢。」",script:"老闆，廣告本來就是要做的，這個沒錯。但差別是，有沒有人幫你優化。光跑廣告沒有優化，錢就一直燒、效果不穩定。我們做的就是幫你把菜單、評價、店頁都調好，讓廣告的每一塊錢發揮最大效果，慢慢累積自然流量，之後就算少下廣告，單量也不會掉。",logic:["認同「廣告要做」，不否定店家的經驗","點出問題在「沒有優化配合」，錢才燒不出效果","目標是讓廣告費越來越少、效果越來越好"]}
+];
+
+var tagColors={"成本類":"#C0392B","過去經驗類":"#7B61FF","現況滿足類":"#1A7A4A","執行能力類":"#1565C0"};
+var openAssistant=new Set();
+var openSituations=new Set();
+var openSales=new Set();
+var openObjs=new Set();
+var objFilter=null;
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-content').forEach(function(el){el.classList.remove('active');});
+  document.querySelectorAll('.tab-btn').forEach(function(el){el.classList.remove('active');});
+  document.getElementById('tab-'+tab).classList.add('active');
+  document.getElementById('tab-btn-'+tab).classList.add('active');
 }
 
-function toggleCard(id) {
-  openId = openId === id ? null : id;
-  renderCards();
+function buildStageCard(s, isOpen, toggleFn) {
+  return '<div class="card'+(isOpen?' open':'')+'"><div class="stage-header" onclick="'+toggleFn+'('+s.num+')"><div class="stage-num" style="'+(isOpen?'background:'+s.color:'')+'">'+s.num+'</div><div class="stage-info"><div class="stage-label" style="color:'+s.color+'">'+s.label+'</div><div class="stage-title">'+s.title+'</div><div class="stage-goal">'+s.goal+'</div></div><div class="chevron">&#9662;</div></div><div class="card-body"><div class="divider"></div><div class="inner-sec"><div class="sec-label">為什麼這個階段重要</div><div class="purpose-box">'+s.purpose+'</div></div><div class="inner-sec"><div class="sec-label">可以這樣說</div>'+s.scripts.map(function(t){return '<div class="script-box" style="border-left-color:'+s.color+'">'+t+'</div>';}).join('')+'</div>'+(s.tips.length?'<div class="inner-sec"><div class="sec-label">注意事項</div>'+s.tips.map(function(t){return '<div class="tip-item"><div class="tip-dot" style="background:'+s.color+'"></div><div class="tip-text">'+t+'</div></div>';}).join('')+'</div>':'')+(s.branches.length?'<div class="inner-sec"><div class="sec-label">老闆不同反應怎麼處理</div>'+s.branches.map(function(b){return '<div class="branch"><div class="branch-header">'+b.label+'</div><div class="branch-body">'+b.body+'</div></div>';}).join('')+'</div>':'')+'</div></div>';
 }
 
-function filterCards(tag, btn) {
-  currentFilter = tag;
-  openId = null;
-  document.querySelectorAll('.filter-btn').forEach(b => {
-    b.classList.remove('active-all');
-    b.style.background = '#FFFFFF';
-    b.style.color = '#999';
-    b.style.borderColor = '#DDDDDD';
-  });
-  if (!tag) {
-    btn.classList.add('active-all');
-  } else {
-    const c = btn.style.getPropertyValue('--c');
-    btn.style.background = c;
-    btn.style.color = '#FFF';
-    btn.style.borderColor = c;
-  }
-  renderCards();
+function buildSituationCard(o, isOpen) {
+  return '<div class="card'+(isOpen?' open':'')+'"><div class="obj-header" onclick="toggleSituation(\''+o.num+'\')"><div class="obj-badge" style="'+(isOpen?'background:'+o.color:'')+'">'+o.num+'</div><div class="obj-meta"><div class="obj-tag" style="color:'+o.color+'">'+o.label+'</div><div class="obj-title">'+o.title+'</div></div><div class="chevron">&#9662;</div></div><div class="card-body"><div class="divider"></div><div class="obj-block"><div class="obj-block-label">店家說</div><div class="obj-block-text">'+o.objection+'</div></div><div class="obj-block script" style="border-left:3px solid '+o.color+'"><div class="obj-block-label" style="color:'+o.color+'">你這樣說</div><div class="obj-block-text">'+o.script+'</div></div><div class="sec-label" style="margin-top:4px;margin-bottom:10px">處理邏輯</div>'+o.logic.map(function(p,i){return '<div class="logic-item"><div class="logic-num" style="background:'+o.color+'">'+(i+1)+'</div><div class="logic-text">'+p+'</div></div>';}).join('')+'</div></div>';
 }
 
-// Init filter button colors
-document.querySelectorAll('.filter-btn[style]').forEach(btn => {
-  btn._color = btn.style.getPropertyValue('--c');
-});
+function renderAssistant(){
+  document.getElementById('assistant-cards').innerHTML=assistantStages.map(function(s){return buildStageCard(s,openAssistant.has(s.num),'toggleAssistant');}).join('');
+  document.getElementById('assistant-situation-cards').innerHTML=assistantSituations.map(function(o){return buildSituationCard(o,openSituations.has(o.num));}).join('');
+}
+function toggleAssistant(num){if(openAssistant.has(num))openAssistant.delete(num);else openAssistant.add(num);renderAssistant();}
+function toggleSituation(num){if(openSituations.has(num))openSituations.delete(num);else openSituations.add(num);renderAssistant();}
 
-renderCards();
+function renderSales(){
+  document.getElementById('sales-framework-cards').innerHTML=salesStages.map(function(s){return buildStageCard(s,openSales.has(s.num),'toggleSales');}).join('');
+}
+function toggleSales(num){if(openSales.has(num))openSales.delete(num);else openSales.add(num);renderSales();}
+
+function renderObjFilters(){
+  var c=document.getElementById('obj-filters');
+  c.innerHTML='<button class="filter-btn'+(objFilter===null?' fall':'')+'" onclick="setObjFilter(null)">全部</button>'+Object.keys(tagColors).map(function(tag){var color=tagColors[tag];var active=objFilter===tag;return '<button class="filter-btn" style="'+(active?'background:'+color+';color:#FFF;border-color:'+color:'')+'" onclick="setObjFilter(\''+tag+'\')">'+tag+'</button>';}).join('');
+}
+function setObjFilter(tag){objFilter=tag;renderObjFilters();renderObjCards();}
+
+function renderObjCards(){
+  var c=document.getElementById('objection-cards');
+  var filtered=objFilter?objections.filter(function(o){return o.tag===objFilter;}):objections;
+  c.innerHTML=filtered.map(function(o){var isOpen=openObjs.has(o.id);return '<div class="card'+(isOpen?' open':'')+'"><div class="obj-header" onclick="toggleObj('+o.id+')"><div class="obj-badge" style="'+(isOpen?'background:'+o.color:'')+'">'+o.id+'</div><div class="obj-meta"><div class="obj-tag" style="color:'+o.color+'">'+o.tag+'</div><div class="obj-title">'+o.title+'</div></div><div class="chevron">&#9662;</div></div><div class="card-body"><div class="divider"></div><div class="obj-block"><div class="obj-block-label">店家說</div><div class="obj-block-text">'+o.objection+'</div></div><div class="obj-block script" style="border-left:3px solid '+o.color+'"><div class="obj-block-label" style="color:'+o.color+'">你這樣說</div><div class="obj-block-text">'+o.script+'</div></div><div class="sec-label" style="margin-top:4px;margin-bottom:10px">核心邏輯</div>'+o.logic.map(function(p,i){return '<div class="logic-item"><div class="logic-num" style="background:'+o.color+'">'+(i+1)+'</div><div class="logic-text">'+p+'</div></div>';}).join('')+'</div></div>';}).join('');
+}
+function toggleObj(id){if(openObjs.has(id))openObjs.delete(id);else openObjs.add(id);renderObjCards();}
+
+renderAssistant();
+renderSales();
+renderObjFilters();
+renderObjCards();
 </script>
 </body>
 </html>
