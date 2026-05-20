@@ -6,68 +6,82 @@
 <title>話術手冊</title>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { min-height: 100vh; background: #F7F6F3; color: #1A1A1A; font-family: 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif; font-size: 16px; }
+  html { font-size: 16px; }
+  body { min-height: 100vh; background: #F7F6F3; color: #1A1A1A; font-family: 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif; font-size: 1rem; }
   .header { background: #FFFFFF; border-bottom: 1px solid #E8E4DF; padding: 28px 24px 20px; position: sticky; top: 0; z-index: 100; }
-  .header-inner { max-width: 720px; margin: 0 auto; }
-  .header-sub { font-size: 12px; letter-spacing: 4px; color: #AAAAAA; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
-  .header h1 { font-size: 26px; font-weight: 700; color: #111; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .header-inner { max-width: 960px; margin: 0 auto; }
+  .header-sub { font-size: 0.75rem; letter-spacing: 4px; color: #AAAAAA; margin-bottom: 6px; text-transform: uppercase; font-weight: 500; }
+  .header h1 { font-size: 1.6rem; font-weight: 700; color: #111; letter-spacing: -0.5px; margin-bottom: 16px; }
+  .top-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .font-controls { display: flex; align-items: center; gap: 6px; }
+  .font-label { font-size: 0.75rem; color: #AAAAAA; font-weight: 500; margin-right: 4px; }
+  .font-btn { width: 32px; height: 32px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; cursor: pointer; font-weight: 700; font-family: inherit; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
+  .font-btn.active { border-color: #111; background: #111; color: #FFF; }
   .tabs { display: flex; gap: 6px; }
-  .tab-btn { padding: 8px 20px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 14px; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
+  .tab-btn { padding: 8px 20px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 0.875rem; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
   .tab-btn.active { border-color: #111; background: #111; color: #FFF; }
-  .content { max-width: 720px; margin: 0 auto; padding: 28px 16px 80px; }
+  .content { max-width: 960px; margin: 0 auto; padding: 28px 16px 80px; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
-  .section-header { font-size: 11px; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
-  .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 700; margin-bottom: 20px; }
+  .section-header { font-size: 0.7rem; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .role-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-bottom: 20px; }
   .card { background: #FFFFFF; border: 1px solid #E8E4DF; border-radius: 8px; margin-bottom: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.04); transition: all 0.2s; }
   .card.open { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
   .stage-header { padding: 18px 22px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
-  .stage-num { width: 38px; height: 38px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
+  .stage-num { width: 38px; height: 38px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 1rem; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
   .card.open .stage-num { color: #FFFFFF; }
   .stage-info { flex: 1; }
-  .stage-label { font-size: 11px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
-  .stage-title { font-size: 17px; font-weight: 700; color: #111; }
-  .stage-goal { font-size: 13px; color: #AAAAAA; margin-top: 2px; }
+  .stage-label { font-size: 0.7rem; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
+  .stage-title { font-size: 1.05rem; font-weight: 700; color: #111; }
+  .stage-goal { font-size: 0.8rem; color: #AAAAAA; margin-top: 2px; }
   .obj-header { padding: 16px 22px; display: flex; align-items: center; gap: 14px; cursor: pointer; user-select: none; }
-  .obj-badge { width: 34px; height: 34px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
+  .obj-badge { width: 34px; height: 34px; border-radius: 6px; background: #F2F0ED; display: flex; align-items: center; justify-content: center; font-size: 0.95rem; font-weight: 800; color: #AAAAAA; flex-shrink: 0; transition: all 0.2s; }
   .card.open .obj-badge { color: #FFFFFF; }
   .obj-meta { flex: 1; }
-  .obj-tag { font-size: 11px; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
-  .obj-title { font-size: 17px; font-weight: 700; color: #111; }
-  .chevron { color: #CCC; font-size: 18px; transition: transform 0.2s; }
+  .obj-tag { font-size: 0.7rem; letter-spacing: 2.5px; font-weight: 600; text-transform: uppercase; margin-bottom: 3px; }
+  .obj-title { font-size: 1.05rem; font-weight: 700; color: #111; }
+  .chevron { color: #CCC; font-size: 1.1rem; transition: transform 0.2s; }
   .card.open .chevron { transform: rotate(180deg); }
   .card-body { display: none; padding: 0 22px 22px; }
   .card.open .card-body { display: block; }
   .divider { height: 1px; background: #F0EDE8; margin-bottom: 18px; }
   .inner-sec { margin-bottom: 18px; }
-  .sec-label { font-size: 11px; letter-spacing: 3px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
-  .purpose-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 15px; color: #444; line-height: 1.75; }
-  .script-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 15px; color: #222; line-height: 1.85; margin-bottom: 8px; border-left-width: 3px; border-left-style: solid; }
+  .sec-label { font-size: 0.7rem; letter-spacing: 3px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 10px; }
+  .purpose-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 0.95rem; color: #444; line-height: 1.75; }
+  .script-box { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 14px 16px; font-size: 0.95rem; color: #222; line-height: 1.85; margin-bottom: 8px; border-left-width: 3px; border-left-style: solid; }
   .tip-item { display: flex; gap: 10px; margin-bottom: 10px; align-items: flex-start; }
   .tip-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 8px; }
-  .tip-text { font-size: 15px; color: #555; line-height: 1.65; }
+  .tip-text { font-size: 0.95rem; color: #555; line-height: 1.65; }
   .branch { border: 1px solid #EEEBE6; border-radius: 6px; overflow: hidden; margin-bottom: 8px; }
-  .branch-header { padding: 10px 14px; font-size: 13px; font-weight: 700; background: #F7F6F3; color: #666; border-bottom: 1px solid #EEEBE6; }
-  .branch-body { padding: 12px 14px; font-size: 15px; color: #333; line-height: 1.75; }
+  .branch-header { padding: 10px 14px; font-size: 0.8rem; font-weight: 700; background: #F7F6F3; color: #666; border-bottom: 1px solid #EEEBE6; }
+  .branch-body { padding: 12px 14px; font-size: 0.95rem; color: #333; line-height: 1.75; }
   .obj-block { background: #F7F6F3; border: 1px solid #EEEBE6; border-radius: 6px; padding: 13px 15px; margin-bottom: 10px; }
-  .obj-block-label { font-size: 11px; letter-spacing: 2.5px; color: #BBBBBB; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
-  .obj-block-text { font-size: 15px; color: #888; line-height: 1.75; }
-  .obj-block.script .obj-block-text { font-size: 16px; color: #222; line-height: 1.85; }
+  .obj-block-label { font-size: 0.7rem; letter-spacing: 2.5px; color: #BBBBBB; margin-bottom: 6px; font-weight: 600; text-transform: uppercase; }
+  .obj-block-text { font-size: 0.95rem; color: #888; line-height: 1.75; }
+  .obj-block.script .obj-block-text { font-size: 1rem; color: #222; line-height: 1.85; }
   .logic-item { display: flex; gap: 10px; margin-bottom: 9px; align-items: flex-start; }
-  .logic-num { width: 20px; height: 20px; border-radius: 3px; color: #FFF; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-  .logic-text { font-size: 15px; color: #555; line-height: 1.65; }
+  .logic-num { width: 20px; height: 20px; border-radius: 3px; color: #FFF; font-size: 0.7rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+  .logic-text { font-size: 0.95rem; color: #555; line-height: 1.65; }
   .filter-row { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 18px; }
-  .filter-btn { padding: 6px 14px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 13px; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
+  .filter-btn { padding: 6px 14px; border-radius: 4px; border: 1.5px solid #DDDDDD; background: #FFFFFF; color: #999; font-size: 0.8rem; cursor: pointer; font-weight: 600; transition: all 0.15s; font-family: inherit; }
   .filter-btn.fall { border-color: #111; background: #111; color: #FFF; }
   .subsection-divider { height: 1px; background: #E8E4DF; margin: 28px 0 24px; }
-  .subsection-title { font-size: 11px; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
+  .subsection-title { font-size: 0.7rem; letter-spacing: 4px; color: #BBBBBB; font-weight: 700; text-transform: uppercase; margin-bottom: 14px; }
 </style>
 </head>
 <body>
 <div class="header">
   <div class="header-inner">
     <div class="header-sub">UberEats 代操</div>
-    <h1>話術手冊</h1>
+    <div class="top-row">
+      <h1>話術手冊</h1>
+      <div class="font-controls">
+        <span class="font-label">字體</span>
+        <button class="font-btn" onclick="setFont('small')" id="font-small" style="font-size:11px">小</button>
+        <button class="font-btn active" onclick="setFont('medium')" id="font-medium" style="font-size:13px">中</button>
+        <button class="font-btn" onclick="setFont('large')" id="font-large" style="font-size:16px">大</button>
+      </div>
+    </div>
     <div class="tabs">
       <button class="tab-btn active" id="tab-btn-assistant" onclick="switchTab('assistant')">🙋 助理版</button>
       <button class="tab-btn" id="tab-btn-sales" onclick="switchTab('sales')">💼 業務版</button>
@@ -184,6 +198,13 @@ function renderObjCards(){
   c.innerHTML=filtered.map(function(o){var isOpen=openObjs.has(o.id);return '<div class="card'+(isOpen?' open':'')+'"><div class="obj-header" onclick="toggleObj('+o.id+')"><div class="obj-badge" style="'+(isOpen?'background:'+o.color:'')+'">'+o.id+'</div><div class="obj-meta"><div class="obj-tag" style="color:'+o.color+'">'+o.tag+'</div><div class="obj-title">'+o.title+'</div></div><div class="chevron">&#9662;</div></div><div class="card-body"><div class="divider"></div><div class="obj-block"><div class="obj-block-label">店家說</div><div class="obj-block-text">'+o.objection+'</div></div><div class="obj-block script" style="border-left:3px solid '+o.color+'"><div class="obj-block-label" style="color:'+o.color+'">你這樣說</div><div class="obj-block-text">'+o.script+'</div></div><div class="sec-label" style="margin-top:4px;margin-bottom:10px">核心邏輯</div>'+o.logic.map(function(p,i){return '<div class="logic-item"><div class="logic-num" style="background:'+o.color+'">'+(i+1)+'</div><div class="logic-text">'+p+'</div></div>';}).join('')+'</div></div>';}).join('');
 }
 function toggleObj(id){if(openObjs.has(id))openObjs.delete(id);else openObjs.add(id);renderObjCards();}
+
+function setFont(size) {
+  var sizes = { small: '14px', medium: '17px', large: '21px' };
+  document.documentElement.style.fontSize = sizes[size];
+  document.querySelectorAll('.font-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('font-' + size).classList.add('active');
+}
 
 renderAssistant();
 renderSales();
